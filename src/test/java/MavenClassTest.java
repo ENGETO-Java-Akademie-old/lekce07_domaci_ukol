@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 class MavenClassTest {
 
     @Test
-    void add() {
+    void testAdd() {
         MavenClass mavenClass = new MavenClass();
         int expected = 6;
         int actual = mavenClass.add(3, 3);
@@ -14,7 +14,7 @@ class MavenClassTest {
     }
 
     @Test
-    void add2() {
+    void testAdd2() {
         MavenClass mavenClass = new MavenClass();
         boolean thrown = false;
         try {
@@ -23,7 +23,14 @@ class MavenClassTest {
            thrown = true;
         }
         Assertions.assertEquals(true, thrown);
+    }
 
+    @Test
+    // different way of testing for exceptions
+    void testAdd3() {
+        MavenClass mavenClass = new MavenClass();
+        Assertions.assertThrows(ArithmeticException.class, () -> mavenClass.add(Integer.MAX_VALUE, Integer.MAX_VALUE),
+                "Overflow should throw arith exception.");
     }
 
 
